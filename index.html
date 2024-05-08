@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>stop watch</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        section {
+            text-align: center;
+            border: 2px solid #000;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+
+        .buttons div {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            border: 1px solid #007bff;
+            border-radius: 5px;
+        }
+
+        .buttons div:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <h1>Stop watch</h1>
+        <p id="countdown">0</p>
+        <div class="buttons">
+            <div class="startbuttons">start</div>
+            <div class="setbutton">set</div>
+            <div class="stopbutton">stop</div>
+            <div class="resetbutton">reset</div>
+        </div>
+    </section>
+    <script>
+        const countdownElement = document.getElementById("countdown");
+        const startButton = document.querySelector(".startbuttons");
+        const stopButton = document.querySelector(".stopbutton");
+        const resetButton = document.querySelector(".resetbutton");
+        const setButton = document.querySelector(".setbutton");
+        let count = 0;
+        let intervalId;
+        let starCount = 0;
+
+        const startTimer = () => {
+            clearInterval(intervalId); 
+            intervalId = setInterval(() => {
+                countdownElement.innerText = starCount++;
+            }, 1000);
+        };
+
+        const stopTimer = () => {
+            clearInterval(intervalId);
+        };
+
+        const resetTimer = () => {
+            clearInterval(intervalId);
+            starCount = 0;
+            countdownElement.innerText = starCount;
+        };
+
+        const setTimer = () => {
+            starCount = count; 
+            countdownElement.innerText = starCount;
+        };
+
+        startButton.addEventListener("click", startTimer);
+        stopButton.addEventListener("click", stopTimer);
+        resetButton.addEventListener("click", resetTimer);
+        setButton.addEventListener("click", setTimer);
+    </script>
+</body>
+</html>
